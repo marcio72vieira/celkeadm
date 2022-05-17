@@ -9,6 +9,7 @@ class ConfigController extends Config {
     private string $urlController;
     private string $urlMetodo;
     private string $urlParametro;
+    private string $classe;
 
     public function __construct() {
         
@@ -58,10 +59,12 @@ class ConfigController extends Config {
     
     
     public function carregar() {
-
-        require './app/adms/Controllers/Login.php';
-        $login = new Login();
-        $login->access();
+        echo "Carregar as Páginas!<br>";
+        $this->urlController = ucwords($this->urlController);
+        echo "Controller corrigida: ". $this->urlController;
+        $this->classe = "\\App\\adms\\Controllers\\". $this->urlController;
+        $classeCarregar = new $this->classe();
+        $classeCarregar->{$this->urlMetodo}();
     }
 
 }

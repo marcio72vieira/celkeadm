@@ -8,11 +8,14 @@
         <?php
             require './vendor/autoload.php';
             
-            $url = new Core\ConfigController();
+            use Core\ConfigController as Home;
+            
+            //$url = new Core\ConfigController();
+            $url = new Home();
             $url->carregar();
             
-            $home = new ConfigController();
-            $home->carregar();
+            /*$home = new ConfigController();
+            $home->carregar();*/
         ?>
     </body>
 </html>
