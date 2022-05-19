@@ -16,7 +16,9 @@ class Login {
             $valLogin->login($this->dadosForm);
             
             if($valLogin->getResultado()){
-                echo "Redirecionar o usuário para o Painel ADMINISTRATIVO!<br>";
+                $urlDestino = URLADM. "dashboard/index";
+                header("Location: {$urlDestino}");
+                //echo "Redirecionar o usuário para o Painel ADMINISTRATIVO!<br>";
             } else {
                 $this->dados['form'] = $this->dadosForm;
             }
