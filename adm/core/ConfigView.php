@@ -16,9 +16,10 @@ class ConfigView {
 
     public function renderizar() {
         if(file_exists('app/' . $this->nome . '.php')) {
+            //Coloca todo o código da view (arquivo.php) aqui,através do include
             include 'app/' . $this->nome . '.php';
         } else {
-            //die("Erro: Por favor tente novamente. Caso o erro persista, entre em contato com o administrador: ". EMAILADM ."!<br>");
+            //die("Erro (View): Por favor tente novamente. Caso o erro persista, entre em contato com o administrador: ". EMAILADM ."!<br>");
             echo "ERRO ao carregar view: {$this->nome}<br>";
         }
         

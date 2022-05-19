@@ -22,6 +22,8 @@ abstract class Config {
         define('DBNAME', 'celkeadm');
         define('PORT', 3306);
         
+        // echo "<pre>"; var_dump("Local: xxxxxx ", $this->xxxxxxx); echo "</pre>";
+        
     }
 
 }

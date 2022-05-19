@@ -20,7 +20,7 @@ class admsConn {
             echo "Conexão...Ok!";
             return $this->connect;
         }catch(Exception $ex){
-            die('Erro: Por favor tente novamente. Caso o erro persista entre em contato com o administrador: '. EMAILADM .'<br>');
+            die('Erro (Conexão): Por favor tente novamente. Caso o erro persista entre em contato com o administrador: '. EMAILADM .'<br>');
         }
     }
 

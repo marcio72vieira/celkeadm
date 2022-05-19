@@ -17,7 +17,7 @@ class ConfigController extends Config {
 
     public function __construct() {
 
-        //Acessando o método da classe Config, para utilizar as constantes
+        //Acessando o método da classe Config, para utilizar suas constantes
         $this->configAdm();
 
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
@@ -31,24 +31,29 @@ class ConfigController extends Config {
             
             echo "URL Limpa: ". $this->url ."<br>";
             
-            $this->url = $this->limparUrl($this->url);
+            #$this->url = $this->limparUrl($this->url);#
 
+            //Transforma a url recebida, em um array
             $this->urlConjunto = explode("/", $this->url);
 
-            var_dump($this->urlConjunto);
+            echo "<pre>"; var_dump($this->urlConjunto); echo "</pre>"; 
 
             // Verifica se há um controller e converte para minúsculo
             if (isset($this->urlConjunto[0])) {
+                //Coloca o controller(uma classe) em um formato válido
                 $this->urlController = $this->slugController($this->urlConjunto[0]);
             } else {
+                //Se não existir um controller, o controlle padrão será a constante CONTROLLER (=Login)
                 $this->urlController = $this->slugController(CONTROLLER);
             }
 
             // Verifica se há um método e convete para minúsculo
             if (isset($this->urlConjunto[1])) {
+                //Coloca o método(um método) em um formato válido
                 $this->urlMetodo = $this->slugMetodo($this->urlConjunto[1]);
             } else {
-                //Se o usuário não definir o método, é definido o controller e o método define
+                //Se o usuário não definir o método, é definido o controller e o método
+                //Se não existir um método, o método padrão será a constante METODO (=access)
                 $this->urlController = $this->slugController(CONTROLLER);
                 $this->urlMetodo = $this->slugMetodo(METODO);
             }
@@ -114,8 +119,11 @@ class ConfigController extends Config {
     }
 
     public function carregar() {
+        //Define o caminho da classe depois de "sanitizada pelo constructor"
         $this->classe = "\\App\\adms\\Controllers\\" . $this->urlController;
+        //Instancia a classe através de um obojeto, seu nome + ()
         $classeCarregar = new $this->classe();
+        //Invoca o método da classe, seu nome + ()
         $classeCarregar->{$this->urlMetodo}();
     }
 
