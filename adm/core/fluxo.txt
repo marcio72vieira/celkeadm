@@ -1,0 +1,17 @@
+FLUXO DE EXECUÇÃO DO SISTEMA
+
+01 -    São definidas no arquivo \Core\Config.php as constantes URL, URLADM, CONTROLLER e METODO
+02 -    Quando o usuário requisitar a página, deverá digitar na barra de url do navegador: http://localhost/celke/adm/, ou seja
+        o valor da constante URLADM.
+03 -    Neste momento, o arquivo que será executado será o arquivo index.php que possui no seu script, o carregamento do autoload
+        do composer (para carregar as classes quando necessárias) e instancia uma classe ConfigControlle através do "apelido"
+        Home (\Core\ConfigController as Home)
+04 -    Na mesma pasta raiz (root), há um arquivo .htaccess que define uma variável $url para ser lida pela classe
+        ConfigController instanciada no momento em que o usuário acessa http://localhost/celke/adm/
+05 -    Se nada for digitada na url do navegador, apenas a url: http://localhost/celke/adm/, a classe ConfigController irá
+        definir em seu __constructor o Controller (CONTROLLER), Método(METODO) e Parâmetro Padrão para que uma classe seja
+        carregada, ou seja, o CONTROLLER e METODO padroes definidos na classe \Core\Config.php são "Login" e "Access"
+06 -    Após a definição do Controller e Método, é invocado o método carregar da classe ConfigController. Este fluxo será
+        executado por todas as classe do sistema, ou seja, informando ou não o Controller, Método e Parâmetro que se deseja.
+
+    

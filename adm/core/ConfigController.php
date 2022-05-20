@@ -120,7 +120,18 @@ class ConfigController extends Config {
 
     public function carregar() {
         $carregarPgAdm = new \Core\CarregarPgAdm();
+        //Neste momento, o controller, metodo e parâmetro já foram definidos pelo construtor acima
         $carregarPgAdm->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
+        
+        /*
+         * Anteriormente
+        //Define o caminho da classe depois de "sanitizada pelo constructor"
+        $this->classe = "\\App\\adms\\Controllers\\" . $this->urlController;
+        //Instancia a classe através de um obojeto, seu nome + ()
+        $classeCarregar = new $this->classe();
+        //Invoca o método da classe, seu nome + ()
+        $classeCarregar->{$this->urlMetodo}();
+         */
     }
 
 }

@@ -9,7 +9,7 @@ abstract class Config {
         define('URLADM', 'http://localhost/celkeadm/adm/');
 
         define('CONTROLLER', 'Login');
-        define('METODO', 'access');
+        define('METODO', 'index');
         define('CONTROLLERERRO', 'Erro');
         
         define('EMAILADM', 'marcio@seati.ma.gov.br');
@@ -22,7 +22,7 @@ abstract class Config {
         define('DBNAME', 'celkeadm');
         define('PORT', 3306);
         
-        // echo "<pre>"; var_dump("Local: xxxxxx ", $this->xxxxxxx); echo "</pre>";
+        // echo "<pre>"; var_dump("Script: xxxxxxxx, Linha: xxxx ", $this->xxxxxxx); echo "</pre>";
         
     }
 
