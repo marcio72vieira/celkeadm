@@ -44,10 +44,11 @@ class CarregarPgAdm {
     }
     
     private function pgPublica() {
-        $this->pgPublica = ["Login"];
+        $this->pgPublica = ["Login", "Sair"];
         
         if (in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\\adms\\Controllers\\". $this->urlController;
+            echo "<pre>"; var_dump("Script: CarregarPgAdm, Linha: (51) ", $this->classe); echo "</pre>";
         } else {
             $this->pgRestrita();
         }
@@ -72,9 +73,9 @@ class CarregarPgAdm {
         if (isset($_SESSION['user_id']) AND isset($_SESSION['user_name']) AND isset($_SESSION['user_email'])) {
             $this->classe = "\\App\\adms\\Controllers\\". $this->urlController;
         } else {
-            $_SESSION['msg'] = "Erro: Página não encontrada!<br>";
+            $_SESSION['msg'] = "Erro: Para acessar a página realize o login!<br>";
             $urlDestino = URLADM. "login/index";
-            header("Location:" {$urlDestino});
+            header("Location: $urlDestino");
         }
         
     }

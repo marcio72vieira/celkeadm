@@ -6,7 +6,8 @@ class Dashboard {
 
     public function index() {
 
-        echo "BEM VINDO ". $_SESSION['user_name'] ."<br>";
+        $carregarView = new \Core\ConfigView("adms/Views/dashboard/home");
+        $carregarView->renderizar();
 
     }
 
