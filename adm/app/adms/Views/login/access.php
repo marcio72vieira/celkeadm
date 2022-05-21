@@ -2,10 +2,7 @@
     //Logo que essa view for carregada, dados['form'] não existirá
     if(isset($this->dados['form'])){
         $valorForm = $this->dados['form'];
-        echo "<pre>"; var_dump($valorForm); echo "</pre>";
-           
     }
-    
     //Criptografar a senha temporariamente
     //echo password_hash(123456, PASSWORD_DEFAULT);
 ?>
@@ -35,3 +32,7 @@
     <input name="password" type="password" id="password" placeholder="Digite a senha" ><br><br>
     <input name="sendLogin" type="submit" value="Acessar">
 </form>
+
+<!--Link aprontando para o controller e método, através da concatenação com a constante URLADM. É necessário acrescentar
+    no array de paǵinas públicas, localizado no método: pgPublica(), localizado na classe: core\CarregarPgAdmin-->
+<a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a>

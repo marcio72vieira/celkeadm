@@ -10,8 +10,6 @@ class ConfigView {
     public function __construct($nome, $dados = null) {
         $this->nome = $nome;
         $this->dados = $dados;
-
-        echo "Receber o endereço da VIEW: {$this->nome}<br>";
     }
 
     public function renderizar() {
@@ -24,7 +22,6 @@ class ConfigView {
             //die("Erro (View): Por favor tente novamente. Caso o erro persista, entre em contato com o administrador: ". EMAILADM ."!<br>");
             echo "ERRO ao carregar view: {$this->nome}<br>";
         }
-        
     }
 
 }

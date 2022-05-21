@@ -44,11 +44,10 @@ class CarregarPgAdm {
     }
     
     private function pgPublica() {
-        $this->pgPublica = ["Login", "Sair"];
+        $this->pgPublica = ["Login", "Sair", "NewUser"];
         
         if (in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\\adms\\Controllers\\". $this->urlController;
-            echo "<pre>"; var_dump("Script: CarregarPgAdm, Linha: (51) ", $this->classe); echo "</pre>";
         } else {
             $this->pgRestrita();
         }

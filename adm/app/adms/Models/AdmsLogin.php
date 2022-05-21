@@ -4,7 +4,7 @@ namespace App\adms\Models;
 
 use PDO;
 
-class admsLogin extends helper\admsConn {
+class AdmsLogin extends helper\AdmsConn {
 
     private array $dados;
     private object $conn;

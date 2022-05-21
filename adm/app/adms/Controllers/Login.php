@@ -12,7 +12,7 @@ class Login {
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         //Se o botão sendLogin foi enviado, clicado, ele existirá, logo será instanciada a Model
         if(!empty($this->dadosForm['sendLogin'])){
-            $valLogin = new \App\adms\Models\admsLogin();
+            $valLogin = new \App\adms\Models\AdmsLogin();
             $valLogin->login($this->dadosForm);
             
             if($valLogin->getResultado()){

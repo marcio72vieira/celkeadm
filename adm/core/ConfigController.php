@@ -9,7 +9,6 @@ class ConfigController extends Config {
     private string $urlController;
     private string $urlMetodo;
     private string $urlParametro;
-    private string $classe;
     private string $slugController;
     private string $slugMetodo;
     private string $urlLimpa;
@@ -24,19 +23,13 @@ class ConfigController extends Config {
 
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
             
-            echo "Página que o usuário quer acessar: ". $this->url ."<br>";
-            
             //Limpando a URL recebida (retirando caracreres especiais etc...)
             $this->url = $this->limparUrl($this->url);
-            
-            echo "URL Limpa: ". $this->url ."<br>";
             
             #$this->url = $this->limparUrl($this->url);#
 
             //Transforma a url recebida, em um array
             $this->urlConjunto = explode("/", $this->url);
-
-            echo "<pre>"; var_dump($this->urlConjunto); echo "</pre>"; 
 
             // Verifica se há um controller e converte para minúsculo
             if (isset($this->urlConjunto[0])) {
@@ -65,16 +58,10 @@ class ConfigController extends Config {
                 $this->urlParametro = "";
             }
         } else {
-            echo "Criar a página default!<br>";
             $this->urlController = $this->slugController(CONTROLLER);
             $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParametro = "";
         }
-
-        echo "<br>";
-        echo "Controller: {$this->urlController}<br>";
-        echo "Método: {$this->urlMetodo}<br>";
-        echo "Parâmetro: {$this->urlParametro}<br>";
     }
 
     private function slugController($slugController) {
