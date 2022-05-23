@@ -14,4 +14,27 @@ FLUXO DE EXECUÇÃO DO SISTEMA
 06 -    Após a definição do Controller e Método, é invocado o método carregar da classe ConfigController. Este fluxo será
         executado por todas as classe do sistema, ou seja, informando ou não o Controller, Método e Parâmetro que se deseja.
 
+
+
+INSTALANDO O JQUERY DIRETAMENTE EM NOSSO PROJETO
+01 -    Entrar no site do Jquery: https://jquery.com/
+02 -    Clicar no link/botão  "Download Jquery 3.6.0", localizado no cabeçalh da página
+03 -    Clicra na opção: "Download the compressed, production jQuery 3.6.0" ou 
+        "Download the uncompressed, development jQuery 3.6.0" conforme a necessidade
+04 -    Será exibida uma página com todo o código do Jquery, selecione tudo e copie para área de transferência
+04 -    Crie uma pasta: adm/app/adms/assets
+05 -    Crie outra uma pasta: adm/app/adms/assets/js
+06 -    Crie o arquivo jquery.360 na pasta adm/app/adms/assets/js e COLE o conteúdo da "área de transferência" nele e salve-o
+07 -    Invoque o arquivo jquery.360 a partir da página "footer.php", (adm/app/adms/Views/include/footer.php) 
+        logo acima da tab </body>
+
+INSTALANDO O JQUERY A PARTIR DE UMA CDN
+01 -    Entrar no site do Jquery: https://jquery.com/
+02 -    Clicar no link/botão  "Download Jquery 3.6.0", localizado no cabeçalh da página
+03 -    Escolher o título: Other CDNs
+04 -    Clique no link: Google CDN
+05 -    Copie o link: <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+06 -    Colo o link copiado no arquivo: adm/app/adms/Views/include/footer.php logo acima da tab </body>
+07 -    Acesse a página da aplicação, veja o código fonte da página e click no link que carrega o JQUERY e veja
+        se o link exibe todo o script do jquery
     
