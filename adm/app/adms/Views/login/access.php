@@ -25,7 +25,11 @@
     reunidos em um único arquivo, por isso podemos acessar variáveis que estejam em quaisquer um desses scripts.
     Esta lógica, serve para todas as demais views existentes neste projeto.
 -->
-<form method="POST" action="">
+
+<!-- Div para exibir mensagens de error -->
+<span class="msg"></span>
+
+<form id="send_login" method="POST" action="">
     <label>Usuário</label>
     <input name="user" type="text" id="user" placeholder="Digite o usuário" value="<?php if(isset($valorForm['user'])){ echo $valorForm['user']; } ?>" ><br><br>
     <label>Senha</label>
@@ -35,4 +39,5 @@
 
 <!--Link aprontando para o controller e método, através da concatenação com a constante URLADM. É necessário acrescentar
     no array de paǵinas públicas, localizado no método: pgPublica(), localizado na classe: core\CarregarPgAdmin-->
+<br>
 <a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a>

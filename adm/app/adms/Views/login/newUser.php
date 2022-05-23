@@ -14,9 +14,11 @@
     }
 ?>
 
+<!-- Div para exibir mensagens de error -->
+<span class="msg"></span>
 
 <!-- Este formulário será submetido para o controller NewUser.php, ou seja, para a própria página, visto que o action está vazio!  -->
-<form method="POST" action="">
+<form id="new_user" method="POST" action="">
     <label>Nome</label>
     <input name="name" type="text" id="name" placeholder="Digite o nome" value="<?php if(isset($valorForm['name'])){ echo $valorForm['name']; } ?>" ><br><br>
     <label>Email</label>
