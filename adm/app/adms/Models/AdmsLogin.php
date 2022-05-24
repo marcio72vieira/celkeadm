@@ -17,10 +17,10 @@ class AdmsLogin extends helper\AdmsConn {
 
     public function login(array $dados = null) {
         $this->dados = $dados;
-        echo "<pre>"; var_dump("dados do método login() ", $this->dados); echo "</pre>";
+        //echo "<pre>"; var_dump("dados do método login() ", $this->dados); echo "</pre>";
 
         $this->conn = $this->connect();
-        echo "<pre>"; var_dump("dados do método login() ", $this->conn); echo "</pre>";
+        //echo "<pre>"; var_dump("dados do método login() ", $this->conn); echo "</pre>";
 
         $query_val_login = "SELECT id, name, nickname, email, password, image FROM adms_users WHERE user =:user LIMIT 1";
         $result_val_login = $this->conn->prepare($query_val_login);
@@ -29,7 +29,7 @@ class AdmsLogin extends helper\AdmsConn {
 
         $this->resultadoBd = $result_val_login->fetch();
 
-        echo "<pre>"; var_dump("Dados do banco...: ", $this->resultadoBd); echo "</pre>";
+        //echo "<pre>"; var_dump("Dados do banco...: ", $this->resultadoBd); echo "</pre>";
 
         if ($this->resultadoBd) {
             $this->validarSenha();
