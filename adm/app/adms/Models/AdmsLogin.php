@@ -17,20 +17,18 @@ class AdmsLogin extends helper\AdmsConn {
 
     public function login(array $dados = null) {
         $this->dados = $dados;
-        //echo "<pre>"; var_dump("dados do método login() ", $this->dados); echo "</pre>";
-
-        $this->conn = $this->connect();
-        //echo "<pre>"; var_dump("dados do método login() ", $this->conn); echo "</pre>";
-
-        $query_val_login = "SELECT id, name, nickname, email, password, image FROM adms_users WHERE user =:user LIMIT 1";
-        $result_val_login = $this->conn->prepare($query_val_login);
-        $result_val_login->bindParam(':user', $this->dados['user'], PDO::PARAM_STR);
-        $result_val_login->execute();
-
-        $this->resultadoBd = $result_val_login->fetch();
-
-        //echo "<pre>"; var_dump("Dados do banco...: ", $this->resultadoBd); echo "</pre>";
-
+        
+        $viewUser =  new \App\adms\Models\helper\AdmsRead();
+        //Recupera todas as colunas da tabela (não recomendado)
+        //$viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->dados['user']}&limit=1");
+        
+        //Recupera colunas específicas da tabela (recomendado)
+        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE user =:user LIMIT :limit", "user={$this->dados['user']}&limit=1");
+        
+        $this->resultadoBd = $viewUser->getResult();
+        
+        var_dump($viewUser->getResult());
+        
         if ($this->resultadoBd) {
             $this->validarSenha();
         } else {
@@ -41,13 +39,13 @@ class AdmsLogin extends helper\AdmsConn {
 
     private function validarSenha() {
         //Vefifica se o que a senha que o usuário digitou no fomulário é igual a que existe vindo do banco de dados
-        if (password_verify($this->dados['password'], $this->resultadoBd['password'])) {
+        if (password_verify($this->dados['password'], $this->resultadoBd[0]['password'])) {
             //Salvando os dados do usuário na sessão
-            $_SESSION['user_id'] = $this->resultadoBd['id'];
-            $_SESSION['user_name'] = $this->resultadoBd['name'];
-            $_SESSION['user_nickname'] = $this->resultadoBd['nickname'];
-            $_SESSION['user_email'] = $this->resultadoBd['email'];
-            $_SESSION['user_image'] = $this->resultadoBd['image'];
+            $_SESSION['user_id'] = $this->resultadoBd[0]['id'];
+            $_SESSION['user_name'] = $this->resultadoBd[0]['name'];
+            $_SESSION['user_nickname'] = $this->resultadoBd[0]['nickname'];
+            $_SESSION['user_email'] = $this->resultadoBd[0]['email'];
+            $_SESSION['user_image'] = $this->resultadoBd[0]['image'];
 
             return $this->resultado = true;
         } else {
