@@ -2,8 +2,14 @@
 
 namespace Core;
 
+/**
+ * Recebe a URL e manipula
+ * @author Marci Vieira <marcio@seati.ma.gov.br>
+ */
+
 class ConfigController extends Config {
 
+    /** @var string $url Recebe a url do .htaccess */
     private string $url;
     private array $urlConjunto;
     private string $urlController;
@@ -105,6 +111,10 @@ class ConfigController extends Config {
         return $this->urlLimpa;
     }
 
+    
+    /**
+     * @method carregar Intanciar a classe e o método responsável em validar e carregar as páginas
+     */
     public function carregar() {
         $carregarPgAdm = new \Core\CarregarPgAdm();
         //Neste momento, o controller, metodo e parâmetro já foram definidos pelo construtor acima
