@@ -53,7 +53,7 @@ class AdmsValEmailSingle {
         
         
         
-        
+        /*
         //Validando o email, com uma função própria do php
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $this->resultado = true;  
@@ -61,6 +61,6 @@ class AdmsValEmailSingle {
             $_SESSION['msg'] = "Erro: E-mail inválido!";
             $this->resultado = false;
         }
-         
+        */
     }
 }

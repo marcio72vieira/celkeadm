@@ -7,7 +7,7 @@ namespace App\adms\Models;
 class AdmsNewUser extends helper\AdmsConn {
 
     private array $dados;
-    private $resultado;
+    private bool $resultado;
 
     public function getResultado() {
         return $this->resultado;
