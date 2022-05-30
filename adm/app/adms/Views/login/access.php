@@ -40,4 +40,7 @@
 <!--Link aprontando para o controller e método, através da concatenação com a constante URLADM. É necessário acrescentar
     no array de paǵinas públicas, localizado no método: pgPublica(), localizado na classe: core\CarregarPgAdmin-->
 <br>
-<a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a>
+<p><a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a></p>
+
+Usuário: cesar@celke.com.br<br>
+Senha: 123456a

@@ -31,17 +31,22 @@ class AdmsNewUser extends helper\AdmsConn {
     
     //Valida a entrada do email, se válido e único no bd
     private function valInput() {
+        //Valida o email se está no formato correto
         $valEmail = new \App\adms\Models\helper\AdmsValEmail();
         $valEmail->validarEmail($this->dados['email']);
         
-        
+        //Valida o email se é único no banco de dados
         $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
         $valEmailSingle->validarEmailSingle($this->dados['email']);
         
-        if($valEmail->getResultado() AND $valEmailSingle->getResultado()) {
-            $_SESSION['msg'] = 'Usuário deve ser cadastrado!';
-            $this->resultado = false;
-            //$this->add();
+        //Valida a senha
+        $valPassword = new \App\adms\Models\helper\AdmsValPassword();
+        $valPassword->validarPassword($this->dados['password']);
+        
+        if($valEmail->getResultado() AND $valEmailSingle->getResultado()  AND $valPassword->getResultado()) {
+            //$_SESSION['msg'] = 'Usuário deve ser cadastrado!';
+            //$this->resultado = false;
+            $this->add();
         } else {
             $this->resultado = false;
         }

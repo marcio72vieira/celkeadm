@@ -24,7 +24,7 @@
     <label>Email</label>
     <input name="email" type="text" id="email" placeholder="Digite o seu melhor e-mail" value="<?php if(isset($valorForm['email'])){ echo $valorForm['email']; } ?>" ><br><br>
     <label>Senha</label>
-    <input name="password" type="text" id="password" placeholder="Digite a senha" onkeyup="passwordStrength()"><br>
+    <input name="password" type="password" id="password" placeholder="Digite a senha" onkeyup="passwordStrength()"><br>
     <span id="msgViewStrength"></span><br><br>
     <input name="SendNewUser" type="submit" value="Cadastrar">
 </form>
