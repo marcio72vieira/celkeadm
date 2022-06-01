@@ -1,5 +1,40 @@
-Baixando projetos do GIT
+=============================================================================================
+ADICIONANDO UM PROJETO EXISTENTE PARA O GITHUB USANDO LINHA DE COMANDO
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+=============================================================================================
+ghp_MRCAEZdDzq56S7Cc79lAiZh2gwCakqV7114aeME
+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
+1 - Crie um novo projeto no GitHub. Para evitar erros, nao inicialize o novo repositório com os arquivos README, licenças ou gitignore. Você pode adicionar estes arquivos depois que seu proejto tenha sido "pushed" para a o GitHub.
 
+2 - Abra o terminal.
+
+3 - Altere o diretório de trabalho corrente para seu proejeto local.
+
+4 - Inicialize o diretório local com um Git repository.
+	4.1) $ git init
+
+5 - Adicione os arquivos em seu repositório local. Isto os prepara para o primeiro "commit"
+	5.1) $ git add .
+
+6 - Commit os arquivos que você vai preparar in seu repositório local
+	6.1) $ git commit -m "Primeiro Commit"
+
+7 - No topo de seu repositório GitHub, click na página do seu repositório Quick Setup, click em compiar a URL do 
+    repositório remoto
+
+8 - No Terminal, adicione a URL para o repositório remoto onde seu repositório local irá ser "pushed"
+	8.1) $ git remote add origin https://github.com/marcio72vieira/projetocelke.git
+	8.2) $ git remote -v
+
+9 - "Push" as alterações do seu repositório local para GitHub
+	9.1) $ git push origin master
+
+
+
+
+===========================
+Baixando projetos do GIT
+===========================
 1 - Ir para a pasta onde estão seus projetos
     1.1 - cd projetos
     1.2 - git init
