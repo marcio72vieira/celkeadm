@@ -10,7 +10,7 @@ class Login {
     public function index() {
         
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        //Se o botão sendLogin foi enviado, clicado, ele existirá, logo será instanciada a Model
+        //Se "sendLogin" for diferente de vezio, ou seja, se o botão sendLogin foi enviado, clicado, ele existirá, logo será instanciada a Model
         if(!empty($this->dadosForm['sendLogin'])){
             $valLogin = new \App\adms\Models\AdmsLogin();
             $valLogin->login($this->dadosForm);

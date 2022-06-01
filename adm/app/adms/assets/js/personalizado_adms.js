@@ -34,7 +34,7 @@ $(document).ready(function () {
     $("#send_login").on("submit", function() {     
         //Testa se os valores(val) dos campos, através de seus respectivos "id's" está vazio. Se estiveror vazio, 
         //irá inserir no conteúdo de um elemento(<span> no caso), cuja classe é =".msg", uma frase envolta em tags(<p>) html
-        if($("#user").val() === "") {
+        if($("#username").val() === "") {
             $(".msg").html("<p style='color: #ff0000'>Erro: É necessário preencher o campo usuário</p>");
             return false;
         } else if($("#password").val() === "") {

@@ -43,7 +43,11 @@ class AdmsNewUser extends helper\AdmsConn {
         $valPassword = new \App\adms\Models\helper\AdmsValPassword();
         $valPassword->validarPassword($this->dados['password']);
         
-        if($valEmail->getResultado() AND $valEmailSingle->getResultado()  AND $valPassword->getResultado()) {
+        //Valida o username se é único no banco de dados
+        $valUserSingleLogin = new \App\adms\Models\helper\AdmsValUserSingleLogin();
+        $valUserSingleLogin->validarUserSingleLogin($this->dados['email']);
+        
+        if($valEmail->getResultado() AND $valEmailSingle->getResultado()  AND $valPassword->getResultado() AND $valUserSingleLogin->getResultado()) {
             //$_SESSION['msg'] = 'Usuário deve ser cadastrado!';
             //$this->resultado = false;
             $this->add();
@@ -55,7 +59,7 @@ class AdmsNewUser extends helper\AdmsConn {
     private function add() {
         //Criptografando a senha
         $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
-        $this->dados['user'] = $this->dados['email'];
+        $this->dados['username'] = $this->dados['email'];
         $this->dados['created'] = date("Y-m-d H:i:s");
 
         //Instanciando um objeto do tipo AdmCreate e invocando os seus métodos

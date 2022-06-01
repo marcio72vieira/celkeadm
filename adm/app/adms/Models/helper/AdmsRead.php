@@ -32,8 +32,10 @@ class AdmsRead extends AdmsConn {
     }
     
     public function fullRead($query, $paseString = null) {
+        //Recebe o primeiro parâmetro (select campos form tabela where etc...)
         $this->select = $query;
         
+        //Recebe o segundo parâmetro (email :=email, user :=user, limit = limit etc...) se for informado e deposita no array $this->values
         if (!empty($paseString)) {
             //Obs: não deve haver espaços em branco dentro do parâmetro da parsestring vindo como parâmetro
             //Converte o valor de $parseString em um array e atribui à propriedade $this->values (que é um array).

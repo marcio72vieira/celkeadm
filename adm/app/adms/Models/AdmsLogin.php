@@ -22,8 +22,10 @@ class AdmsLogin extends helper\AdmsConn {
         //Recupera todas as colunas da tabela (não recomendado)
         //$viewUser->exeRead("adms_users", "WHERE user =:user LIMIT :limit", "user={$this->dados['user']}&limit=1");
         
-        //Recupera colunas específicas da tabela (recomendado)
-        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE user =:user LIMIT :limit", "user={$this->dados['user']}&limit=1");
+        //Recupera colunas específicas da tabela (recomendado) e realiza o login utilizando só o nome de usuário
+        //$viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->dados['username']}&limit=1");
+        //Realiza o login utilizando o usuário ou o email
+        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE username =:username OR email =:email LIMIT :limit", "username={$this->dados['username']}&email={$this->dados['username']}&limit=1");
         
         $this->resultadoBd = $viewUser->getResult();
         

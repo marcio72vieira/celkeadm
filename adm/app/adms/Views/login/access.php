@@ -31,7 +31,7 @@
 
 <form id="send_login" method="POST" action="">
     <label>Usuário</label>
-    <input name="user" type="text" id="user" placeholder="Digite o usuário" value="<?php if(isset($valorForm['user'])){ echo $valorForm['user']; } ?>" ><br><br>
+    <input name="username" type="text" id="username" placeholder="Digite o usuário ou email" value="<?php if(isset($valorForm['username'])){ echo $valorForm['username']; } ?>" ><br><br>
     <label>Senha</label>
     <input name="password" type="password" id="password" placeholder="Digite a senha" ><br><br>
     <input name="sendLogin" type="submit" value="Acessar">
