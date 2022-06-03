@@ -2,10 +2,7 @@
 ADICIONANDO UM PROJETO EXISTENTE PARA O GITHUB USANDO LINHA DE COMANDO
 https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 =============================================================================================
-ghp_MRCAEZdDzq56S7Cc79lAiZh2gwCakqV7114aeME
-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
-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
-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
+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
 
 1 - Crie um novo projeto no GitHub. Para evitar erros, nao inicialize o novo repositório com os arquivos README, licenças ou gitignore. Você pode adicionar estes arquivos depois que seu proejto tenha sido "pushed" para a o GitHub.
 
