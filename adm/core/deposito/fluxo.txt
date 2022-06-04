@@ -424,3 +424,38 @@ INSTALANDO O JQUERY A PARTIR DE UMA CDN
 07 -    Acesse a página da aplicação, veja o código fonte da página e click no link que carrega o JQUERY e veja
         se o link exibe todo o script do jquery
     
+=====================================================
+ENVIANDO EMAIL COM PHPMAILER
+=====================================================
+1 - Acessar a página: https://github.com/PHPMailer/PHPMailer
+2 - Na página do phpmailer, copie o trecho: composer require phpmailer/phpmailer
+3 - Acesse o diretório do projeto onde se encontra o arquivo composer.json e o arquivo vendoer e cole o trecho acima: 
+    3.1 cd /var/www/html/celkeadm/adm
+    3.2 composer require phpmailer/phpmailer
+4 - Para utilizar o composer depois de instalado, crie um novo arquivo  AdmsSendEmail.php em:
+    4.1 /var/www/html/celkeadm/adm/app/adms/Models/helper/AdmsSendEmail.php
+    4.2 Abaixo do namespace coloque o trecho abaixo
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\SMTP;
+        use PHPMailer\PHPMailer\Exception;
+    4.3 Não é necessário incuir o linha: require 'vendor/autoload.php'; A mesma já está no arquivo index.php
+
+5 - Instancie a classe phpmailer dentro de um novo método como abaixo. Obs, faça com que um outro método invoque 
+    este método criado, como abaixo: 
+    public function sendEmail() {
+        $this->sendEmailPhpMailer();
+    }
+    private function sendEmailPhpMailer() {
+        $mail = new PHPMailer(true);
+        try {
+            ...
+            $this->resultado = true;
+        } catch () {
+            ...
+            $this->resultado = false;
+        }
+    }
+
+    
+    
+

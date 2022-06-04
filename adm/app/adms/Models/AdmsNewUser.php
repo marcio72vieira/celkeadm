@@ -8,6 +8,7 @@ class AdmsNewUser extends helper\AdmsConn {
 
     private array $dados;
     private bool $resultado;
+    private string $fromEmail;
 
     public function getResultado() {
         return $this->resultado;
@@ -67,10 +68,25 @@ class AdmsNewUser extends helper\AdmsConn {
         $createUser->exeCreate("adms_users", $this->dados);
 
         if ($createUser->getResult()) {
-            $_SESSION['msg'] = "Usuário cadastrado com sucesso!<br>";
-            $this->resultado = true;
+            //Invoca o método sendEmail desta classe
+            $this->sendEmail();
         } else {
             $_SESSION['msg'] = "Erro: Usuário não cadastrado!<br>";
+            $this->resultado = false;
+        }
+    }
+    
+    private function sendEmail() {
+        
+        $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();   //Cria um objeto do tipo AdmsSendEmail
+        $sendEmail->sendEmail();                                    //Invoca o método sendEmail do objeto criado
+        
+        if($sendEmail->getResultado()) {
+            $_SESSION['msg'] = "Usuário cadastrado com sucesso!<br>Acesse sua caixa de e-mail para confirmar o e-mail";
+            $this->resultado = true;
+        } else {
+            $this->fromEmail = $sendEmail->getFromEmail();
+            $_SESSION['msg'] = "Usuário cadastrado com sucesso!<br>Houve erro ao enviar e-mail de confirmação. Entre em contato com ". $this->fromEmail ."para mais informações";
             $this->resultado = false;
         }
     }

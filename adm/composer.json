@@ -12,5 +12,7 @@
             "App\\": "app"
         }
     },
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
 }
