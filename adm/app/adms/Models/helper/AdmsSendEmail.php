@@ -24,9 +24,13 @@ class AdmsSendEmail {
     }
 
     
-    public function sendEmail($optionConfEmail) {
+    public function sendEmail($dados, $optionConfEmail) {
         $this->optionConfEmail = $optionConfEmail;
         
+        $this->dados = $dados;      //A propriedade dados, recebe os dados para quem sera enviado o email
+        
+        
+        /*
         //Definindo quem recebe o email e o conteúdo
         $this->dados['toEmail'] = 'ester@email.com';
         $this->dados['toName'] = 'Ester Clévia';
@@ -34,6 +38,7 @@ class AdmsSendEmail {
         $this->dados['contentHtml'] = "Olá <b>Ester Clevia dos Santos</b><br><p>Cadastro realizado com sucesso!</p>";
         //Obs: Para ter uma correta interpretação dos caracteres de scape \n\t etc.. é necessário a mensagem estar envolta por aspas duplas
         $this->dados['contentText'] = "Olá Ester Clevia dos Santos \n\n Cadastro realizado com sucesso!\n";
+        */
         
         $this->infoPhpMailer();
         
@@ -86,6 +91,7 @@ class AdmsSendEmail {
             
             //Email e nome de quem estará recebendo
             $mail->addAddress($this->dados['toEmail'], $this->dados['toName']);     //Add a recipient
+            
             
             /*
             $mail->addAddress('ellen@example.com');               //Name is optional

@@ -9,6 +9,8 @@ class AdmsNewUser extends helper\AdmsConn {
     private array $dados;
     private bool $resultado;
     private string $fromEmail;
+    private string $firstName;
+    private array $emailData;
 
     public function getResultado() {
         return $this->resultado;
@@ -79,7 +81,13 @@ class AdmsNewUser extends helper\AdmsConn {
     private function sendEmail() {
         
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();   //Cria um objeto do tipo AdmsSendEmail
-        $sendEmail->sendEmail(1);                                   //Invoca o método sendEmail do objeto criado, 
+        
+        //Invocando os conteúdos html e text para depois instanciar o método sendEmail()
+        $this->emailHtml();
+        $this->emailText();
+        
+        //Enviando os dados do email (formatação html e text) juntamente com o email desejado (Atendimento, suporte, noreplay etc...)
+        $sendEmail->sendEmail($this->emailData, 1);                 //Invoca o método sendEmail do objeto criado, 
                                                                     //indicando o tipo de email a ser enviado 
                                                                     //(1-atendiemnto; 2 - suporte, 3 - não responda)
         
@@ -91,6 +99,40 @@ class AdmsNewUser extends helper\AdmsConn {
             $_SESSION['msg'] = "Usuário cadastrado com sucesso!<br>Houve erro ao enviar e-mail de confirmação. Entre em contato com ". $this->fromEmail ."para mais informações";
             $this->resultado = false;
         }
+    }
+    
+    //Método responsável por montar um e-mail HTML
+    private function emailHtml() {
+        //Resgatando a primeira parte do nome que o usuário digitar
+        $name = explode(" ", $this->dados['name']);
+        $this->firstName = $name[0];
+        
+        $this->emailData['toEmail'] = $this->dados['email'];
+        $this->emailData['toName'] = $this->firstName;
+        $this->emailData['subject'] = "Confirmar sua conta";
+        
+        $this->emailData['contentHtml']  = "Prezado(a) {$this->firstName} <br><br>";
+        $this->emailData['contentHtml'] .= "Agradecemos a sua solicitação de cadastramento em nosso site<br><br>";
+        $this->emailData['contentHtml'] .= "Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do email, clicando no link abaixo<br><br>";
+        $this->emailData['contentHtml'] .= "LINK <br><br>";
+        $this->emailData['contentHtml'] .= "Esta mensagem foi enviada a você pela empresa XXX.<br>";
+        $this->emailData['contentHtml'] .= "Você está recebendo porquê está cadastrado no bando de dados da empresa XXX. ";
+        $this->emailData['contentHtml'] .= "Nenhum e-mail enviado pela empresa XXX tem arquivos anexos ou solicita o preenchimento de senhas ";
+        $this->emailData['contentHtml'] .= "ou informações cadastrais<br><br>";
+    }
+    
+    //Método responsável por montar um e-mail TEXT
+    private function emailText() {
+        //Os dados toEmail, toName e subject, ja foram definidos no método acima em emailHtml()
+        
+        $this->emailData['contentText']  = "Prezado(a) {$this->firstName} \n\n";
+        $this->emailData['contentText'] .= "Agradecemos a sua solicitação de cadastramento em nosso site\n\n";
+        $this->emailData['contentText'] .= "Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do email, clicando no link abaixo\n\n";
+        $this->emailData['contentText'] .= "LINK \n\n";
+        $this->emailData['contentText'] .= "Esta mensagem foi enviada a você pela empresa XXX.\n";
+        $this->emailData['contentText'] .= "Você está recevendo porquê está cadastrado no bando de dados da empresa XXX.";
+        $this->emailData['contentText'] .= "Nenhum e-mail enviado pela empresa XXX tem arquivos anexos ou solicita o preenchimento de senhas ";
+        $this->emailData['contentText'] .= "ou informações cadastrais\n\n";
     }
 
 }
