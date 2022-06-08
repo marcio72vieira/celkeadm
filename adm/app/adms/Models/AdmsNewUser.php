@@ -79,11 +79,13 @@ class AdmsNewUser extends helper\AdmsConn {
     private function sendEmail() {
         
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();   //Cria um objeto do tipo AdmsSendEmail
-        $sendEmail->sendEmail();                                    //Invoca o método sendEmail do objeto criado
+        $sendEmail->sendEmail(1);                                   //Invoca o método sendEmail do objeto criado, 
+                                                                    //indicando o tipo de email a ser enviado 
+                                                                    //(1-atendiemnto; 2 - suporte, 3 - não responda)
         
         if($sendEmail->getResultado()) {
             $_SESSION['msg'] = "Usuário cadastrado com sucesso!<br>Acesse sua caixa de e-mail para confirmar o e-mail";
-            $this->resultado = true;
+            $this->resultado = false;
         } else {
             $this->fromEmail = $sendEmail->getFromEmail();
             $_SESSION['msg'] = "Usuário cadastrado com sucesso!<br>Houve erro ao enviar e-mail de confirmação. Entre em contato com ". $this->fromEmail ."para mais informações";

@@ -10,10 +10,8 @@ class AdmsSendEmail {
 
     private array $dados;
     private array $dadosInfoEmail;
-    private array $resultadoBd;
     private bool $resultado;
     private string $fromEmail;
-    private int $optionConfEmail;
 
     public function getResultado(): bool {
         return $this->resultado;
@@ -24,8 +22,18 @@ class AdmsSendEmail {
     }
 
     
-    public function sendEmail($optionConfEmail) {
-        $this->optionConfEmail = $optionConfEmail;
+    public function sendEmail() {
+        
+        //Definindo as credenciais para envio do email
+        $this->dadosInfoEmail['host'] = 'smtp.mailtrap.io';
+        $this->dadosInfoEmail['username'] = '4af9b091ce1883';
+        $this->dadosInfoEmail['password'] = '56a73081d75e25';
+        $this->dadosInfoEmail['port'] = 587;
+        $this->dadosInfoEmail['fromEmail'] = 'marcio@email.com.br';
+        $this->dadosInfoEmail['fromName'] = 'Marcio Vieira';
+        
+        //Definindo o email para quem o destinatário deverá informar à respeito de um erro no envio do email
+        $this->fromEmail = $this->dadosInfoEmail['fromEmail'];
         
         //Definindo quem recebe o email e o conteúdo
         $this->dados['toEmail'] = 'ester@email.com';
@@ -35,34 +43,8 @@ class AdmsSendEmail {
         //Obs: Para ter uma correta interpretação dos caracteres de scape \n\t etc.. é necessário a mensagem estar envolta por aspas duplas
         $this->dados['contentText'] = "Olá Ester Clevia dos Santos \n\n Cadastro realizado com sucesso!\n";
         
-        $this->infoPhpMailer();
-        
         //Invocando o método para enviar email pelo PhpMailer
         $this->sendEmailPhpMailer();
-    }
-    
-    
-    //Definindo as credenciais para envio do email, a partir do banco de dados
-    private function infoPhpMailer() {
-        //Instanciando a classe GENÉRICA de buscar informações no banco de dados
-        $confEmail = new \App\adms\Models\helper\AdmsRead();
-        $confEmail->fullRead("SELECT name, email, host, username, password, smtpsecure, port FROM adms_confs_emails WHERE id =:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
-        $this->resultadoBd = $confEmail->getResult();
-        
-        echo "<pre>"; var_dump($this->resultadoBd); echo "</pre>";
-        
-        
-       
-        $this->dadosInfoEmail['host']       = $this->resultadoBd[0]['host'];
-        $this->dadosInfoEmail['username']   = $this->resultadoBd[0]['username'];
-        $this->dadosInfoEmail['password']   = $this->resultadoBd[0]['password'];
-        $this->dadosInfoEmail['port']       = $this->resultadoBd[0]['port'];
-        $this->dadosInfoEmail['fromEmail']  = $this->resultadoBd[0]['email'];
-        $this->dadosInfoEmail['fromName']   = $this->resultadoBd[0]['name'];
-        $this->dadosInfoEmail['smtpsecure']   = $this->resultadoBd[0]['smtpsecure'];
-        //Definindo o email para quem o destinatário deverá informar à respeito de um erro no envio do email
-        $this->fromEmail = $this->dadosInfoEmail['fromEmail'];
-        
     }
 
     private function sendEmailPhpMailer() {
@@ -78,7 +60,7 @@ class AdmsSendEmail {
             $mail->SMTPAuth = true;                                 //Enable SMTP authentication
             $mail->Username = $this->dadosInfoEmail['username'];    //SMTP username
             $mail->Password = $this->dadosInfoEmail['password'];    //SMTP password
-            $mail->SMTPSecure = $this->dadosInfoEmail['smtpsecure'];     //Enable implicit TLS encryption
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;     //Enable implicit TLS encryption
             $this->dadosInfoEmail['port'];                          //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS` 
             
             //Email e nome de quem está enviando
