@@ -2,12 +2,11 @@
 
 namespace App\adms\Models;
 
-use PDO;
+//use PDO;
 
-class AdmsLogin extends helper\AdmsConn {
+class AdmsLogin {
 
     private array $dados;
-    private object $conn;
     private $resultadoBd;
     private $resultado;
 
@@ -25,17 +24,32 @@ class AdmsLogin extends helper\AdmsConn {
         //Recupera colunas específicas da tabela (recomendado) e realiza o login utilizando só o nome de usuário
         //$viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->dados['username']}&limit=1");
         //Realiza o login utilizando o usuário ou o email
-        $viewUser->fullRead("SELECT id, name, nickname, email, password, image FROM adms_users WHERE username =:username OR email =:email LIMIT :limit", "username={$this->dados['username']}&email={$this->dados['username']}&limit=1");
+        $viewUser->fullRead("SELECT id, name, nickname, email, password, adms_sits_user_id, image FROM adms_users WHERE username =:username OR email =:email LIMIT :limit", "username={$this->dados['username']}&email={$this->dados['username']}&limit=1");
         
         $this->resultadoBd = $viewUser->getResult();
         
         var_dump($viewUser->getResult());
         
         if ($this->resultadoBd) {
-            $this->validarSenha();
+            $this->valEmailPerm();
         } else {
             $_SESSION['msg'] = "Erro: Usuário não encontrado!<br><br>";
             return $this->resultado = false;
+        }
+    }
+    
+    private function valEmailPerm() {
+        if ($this->resultadoBd[0]['adms_sits_user_id'] == 3) {
+            $_SESSION['msg'] = "Erro: Necessário confirmar o e-mail!<br><br>";
+            return $this->resultado = false;
+        } else if ($this->resultadoBd[0]['adms_sits_user_id'] == 5) {
+            $_SESSION['msg'] = "Erro: E-mail descadastrado, entre em contato com a empresa!<br><br>";
+            return $this->resultado = false;
+        } else if ($this->resultadoBd[0]['adms_sits_user_id'] == 2) {
+            $_SESSION['msg'] = "Erro: E-mail inativo, entre em contato com a empresa!<br><br>";
+            return $this->resultado = false;
+        } else {
+            $this->validarSenha();
         }
     }
 

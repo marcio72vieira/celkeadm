@@ -4,7 +4,8 @@ namespace App\adms\Models;
 
 //use PDO;
 
-class AdmsNewUser extends helper\AdmsConn {
+class AdmsNewUser 
+{
 
     private array $dados;
     private bool $resultado;
@@ -60,9 +61,10 @@ class AdmsNewUser extends helper\AdmsConn {
     }
 
     private function add() {
-        //Criptografando a senha
+        //Criptografando a senha, atribuindo ao usernameo mesmo valor do email e criptografando o link para confirmar email(senha + data atual)
         $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
         $this->dados['username'] = $this->dados['email'];
+        $this->dados['conf_email'] = password_hash($this->dados['password'].date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
         $this->dados['created'] = date("Y-m-d H:i:s");
 
         //Instanciando um objeto do tipo AdmCreate e invocando os seus métodos
@@ -73,7 +75,7 @@ class AdmsNewUser extends helper\AdmsConn {
             //Invoca o método sendEmail desta classe
             $this->sendEmail();
         } else {
-            $_SESSION['msg'] = "Erro: Usuário não cadastrado!<br>";
+            $_SESSION['msg'] = "Erro: Usuário não cadastrado. Tente mais tarde!<br>";
             $this->resultado = false;
         }
     }
@@ -111,10 +113,14 @@ class AdmsNewUser extends helper\AdmsConn {
         $this->emailData['toName'] = $this->firstName;
         $this->emailData['subject'] = "Confirmar sua conta";
         
+        //Criando a variável(url) para confirmação de email enviada no corpo do email
+        //Esta variável é composta pela constante URLADM + controle/método conf-email/index + chave que recebe a criptografia gerada acima
+        $urlConfEmail = URLADM . "conf-email/index?chave=" . $this->dados['conf_email'];
+        
         $this->emailData['contentHtml']  = "Prezado(a) {$this->firstName} <br><br>";
         $this->emailData['contentHtml'] .= "Agradecemos a sua solicitação de cadastramento em nosso site<br><br>";
         $this->emailData['contentHtml'] .= "Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do email, clicando no link abaixo<br><br>";
-        $this->emailData['contentHtml'] .= "LINK <br><br>";
+        $this->emailData['contentHtml'] .= "<a href='". $urlConfEmail ."'>". $urlConfEmail ."></a><br><br>";
         $this->emailData['contentHtml'] .= "Esta mensagem foi enviada a você pela empresa XXX.<br>";
         $this->emailData['contentHtml'] .= "Você está recebendo porquê está cadastrado no bando de dados da empresa XXX. ";
         $this->emailData['contentHtml'] .= "Nenhum e-mail enviado pela empresa XXX tem arquivos anexos ou solicita o preenchimento de senhas ";
@@ -125,10 +131,16 @@ class AdmsNewUser extends helper\AdmsConn {
     private function emailText() {
         //Os dados toEmail, toName e subject, ja foram definidos no método acima em emailHtml()
         
+        //Criando a variável(url) para confirmação de email enviada no corpo do email. Houve a necessidade de se criar
+        //aqui novamente, porque se trata de uma variável e não de uma propriedade. Sendo uma variável, ele só existe
+        //no scopo do método onde ela foi criada.
+        //Esta variável é composta pela constante URLADM + controle/método conf-email/index + chave que recebe a criptografia gerada acima
+        $urlConfEmail = URLADM . "conf-email/index?chave=" . $this->dados['conf_email'];
+        
         $this->emailData['contentText']  = "Prezado(a) {$this->firstName} \n\n";
         $this->emailData['contentText'] .= "Agradecemos a sua solicitação de cadastramento em nosso site\n\n";
-        $this->emailData['contentText'] .= "Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do email, clicando no link abaixo\n\n";
-        $this->emailData['contentText'] .= "LINK \n\n";
+        $this->emailData['contentText'] .= "Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do email, clicando no link abaixo ou cole o link no navegador\n\n";
+        $this->emailData['contentText'] .= $urlConfEmail."\n\n";
         $this->emailData['contentText'] .= "Esta mensagem foi enviada a você pela empresa XXX.\n";
         $this->emailData['contentText'] .= "Você está recevendo porquê está cadastrado no bando de dados da empresa XXX.";
         $this->emailData['contentText'] .= "Nenhum e-mail enviado pela empresa XXX tem arquivos anexos ou solicita o preenchimento de senhas ";
