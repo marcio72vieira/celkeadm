@@ -28,7 +28,7 @@ class AdmsLogin {
         
         $this->resultadoBd = $viewUser->getResult();
         
-        var_dump($viewUser->getResult());
+        //var_dump($viewUser->getResult());
         
         if ($this->resultadoBd) {
             $this->valEmailPerm();

@@ -54,7 +54,7 @@ class AdmsSendEmail {
         $confEmail->fullRead("SELECT name, email, host, username, password, smtpsecure, port FROM adms_confs_emails WHERE id =:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
         $this->resultadoBd = $confEmail->getResult();
         
-        echo "<pre>"; var_dump($this->resultadoBd); echo "</pre>";
+        //echo "<pre>"; var_dump($this->resultadoBd); echo "</pre>";
         
         
        

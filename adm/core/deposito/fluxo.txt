@@ -2,7 +2,7 @@
 ADICIONANDO UM PROJETO EXISTENTE PARA O GITHUB USANDO LINHA DE COMANDO
 https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 =============================================================================================
-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
+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
 
 1 - Crie um novo projeto no GitHub. Para evitar erros, nao inicialize o novo repositório com os arquivos README, licenças ou gitignore. Você pode adicionar estes arquivos depois que seu proejto tenha sido "pushed" para a o GitHub.
 
@@ -456,6 +456,12 @@ ENVIANDO EMAIL COM PHPMAILER
         }
     }
 
-    
+
+
+// Insignith: 
+OBS -   Sempre que se desejar fazer alguma verificação com alguma informação do banco, deve-se instanciar
+        uma model existente (que atenda essa veruficação) ou deve-se criar.
+        
+          
     
 
