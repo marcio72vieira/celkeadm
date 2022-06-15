@@ -11,11 +11,6 @@ class NewConfEmail {
         
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         
-        print_r($this->dadosForm);
-        
-       
-        
-        
         //Se "newConfEmail" for diferente de vazio, ou seja, se o botão newConfEmail foi enviado, clicado, ele existirá, logo será instanciada a Model
         //caso contrário, ele carregará a view para enviar um novo link para configurar email
         if(!empty($this->dadosForm['newConfEmail'])){
