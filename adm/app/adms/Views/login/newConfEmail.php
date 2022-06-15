@@ -29,7 +29,7 @@
 <!-- Div para exibir mensagens de error -->
 <span class="msg"></span>
 
-<form id="send_login" method="POST" action="">
+<form id="new_conf_email" method="POST" action="">
     <label>E-mail</label>
     <input name="email" type="text" id="email" placeholder="Digite o e-mail cadastrado" value="<?php if(isset($valorForm['email'])){ echo $valorForm['email']; } ?>" ><br><br>
     <input name="newConfEmail" type="submit" value="Enviar">

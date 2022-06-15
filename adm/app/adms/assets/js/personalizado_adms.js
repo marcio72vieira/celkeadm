@@ -45,6 +45,18 @@ $(document).ready(function () {
 });
 
 
+//Quando carregar o documento, execute uma função para validar se o usuário preecheu o campo email para enviar um lovo link para ativação
+$(document).ready(function () {
+    //Quando houver uma interação (on) do tipo "submit" no formulário, execute uma função.
+    $("#new_conf_email").on("submit", function() {     
+        if($("#email").val() === "") {
+            $(".msg").html("<p style='color: #ff0000'>Erro: É necessário preencher o campo e-mail A!</p>");
+            return false;
+        }
+    });
+});
+
+
 //FUNÇÕES ENVOLVENDO O JAVASCRIPT PURO
 function passwordStrength() {
     

@@ -19,6 +19,21 @@ class AdmsNewConfEmail extends helper\AdmsConn {
     public function newConfEmail(array $dados = null) {
         $this->dados = $dados;
         
+        //Só irá validar o usuário, se o usuário preencher o formulário com o email preechido. Obs, temos apenas um campo (email) para validar
+        //Faz a validação do usuário, se o mesmo existe no banco de dados através do método valUser()
+        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
+        $valCampoVazio->validarDados($this->dados);
+        
+        if($valCampoVazio->getResultado()) {
+            $this->valUser();
+        } else {
+            $this->resultado = false;
+        }
+    }
+    
+    //Valida se existe o usuári no banco de dados pesquisando pelo e-mail
+    private function valUser() {
+        
         $newConfEmail =  new \App\adms\Models\helper\AdmsRead();
         
         $newConfEmail->fullRead("SELECT id, name, email, conf_email FROM adms_users WHERE email =:email LIMIT :limit", "email={$this->dados['email']}&limit=1");
@@ -41,6 +56,7 @@ class AdmsNewConfEmail extends helper\AdmsConn {
             $_SESSION['msg'] = "Erro: E-mail não cadastrado!<br><br>";
             return $this->resultado = false;
         }
+        
     }
     
     private function valConfEmail() {

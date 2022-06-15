@@ -14,6 +14,7 @@ class NewConfEmail {
         //Se "newConfEmail" for diferente de vazio, ou seja, se o botão newConfEmail foi enviado, clicado, ele existirá, logo será instanciada a Model
         //caso contrário, ele carregará a view para enviar um novo link para configurar email
         if(!empty($this->dadosForm['newConfEmail'])){
+            unset($this->dadosForm['newConfEmail']);
             $newConfEmail = new \App\adms\Models\AdmsNewConfEmail();
             $newConfEmail->newConfEmail($this->dadosForm);
             

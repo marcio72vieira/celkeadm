@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 15-Jun-2022 às 12:44
--- Versão do servidor: 8.0.23
--- versão do PHP: 7.4.3
+-- Tempo de geração: 15/06/2022 às 17:29
+-- Versão do servidor: 8.0.29-0ubuntu0.20.04.3
+-- Versão do PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,19 +25,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `adms_colors`
+-- Estrutura para tabela `adms_colors`
 --
 
 CREATE TABLE `adms_colors` (
   `id` int NOT NULL,
-  `name` varchar(44) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(44) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(44) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(44) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `adms_colors`
+-- Despejando dados para a tabela `adms_colors`
 --
 
 INSERT INTO `adms_colors` (`id`, `name`, `color`, `created`, `modified`) VALUES
@@ -53,25 +53,25 @@ INSERT INTO `adms_colors` (`id`, `name`, `color`, `created`, `modified`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `adms_confs_emails`
+-- Estrutura para tabela `adms_confs_emails`
 --
 
 CREATE TABLE `adms_confs_emails` (
   `id` int NOT NULL,
-  `title` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `host` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `smtpsecure` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `host` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `smtpsecure` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `port` int NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `adms_confs_emails`
+-- Despejando dados para a tabela `adms_confs_emails`
 --
 
 INSERT INTO `adms_confs_emails` (`id`, `title`, `name`, `email`, `host`, `username`, `password`, `smtpsecure`, `port`, `created`, `modified`) VALUES
@@ -82,19 +82,19 @@ INSERT INTO `adms_confs_emails` (`id`, `title`, `name`, `email`, `host`, `userna
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `adms_sits_users`
+-- Estrutura para tabela `adms_sits_users`
 --
 
 CREATE TABLE `adms_sits_users` (
   `id` int NOT NULL,
-  `name` varchar(44) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(44) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `adms_color_id` int NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `adms_sits_users`
+-- Despejando dados para a tabela `adms_sits_users`
 --
 
 INSERT INTO `adms_sits_users` (`id`, `name`, `adms_color_id`, `created`, `modified`) VALUES
@@ -107,7 +107,7 @@ INSERT INTO `adms_sits_users` (`id`, `name`, `adms_color_id`, `created`, `modifi
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `adms_users`
+-- Estrutura para tabela `adms_users`
 --
 
 CREATE TABLE `adms_users` (
@@ -118,7 +118,7 @@ CREATE TABLE `adms_users` (
   `username` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `recover_password` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `conf_email` varchar(220) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `conf_email` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `adms_sits_user_id` int NOT NULL DEFAULT '3',
   `image` varchar(220) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created` datetime NOT NULL,
@@ -126,52 +126,52 @@ CREATE TABLE `adms_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `adms_users`
+-- Despejando dados para a tabela `adms_users`
 --
 
 INSERT INTO `adms_users` (`id`, `name`, `nickname`, `email`, `username`, `password`, `recover_password`, `conf_email`, `adms_sits_user_id`, `image`, `created`, `modified`) VALUES
 (1, 'Cesar Szpak', NULL, 'cesar@celke.com.br', 'cesar@celke.com.br', '$2y$10$SEhSmEeV5aqnnJbbqWos8.k8AYOFwwrZhHpvphe0z.37aG4tQTFDa', NULL, NULL, 1, NULL, '2022-06-08 15:42:54', NULL),
 (2, 'Cesar 1', NULL, 'cesar1@celke.com.br', 'cesar1@celke.com.br', '$2y$10$ZgJWvB7k5EtYDSOS1SRgmOJishBsva3JTyKuff3pi3KPugVURN.zm', NULL, NULL, 5, NULL, '2022-06-08 15:47:19', NULL),
-(3, 'Cesar2', NULL, 'cesar2@celke.com.br', 'cesar2@celke.com.br', '$2y$10$XMEh02l23wsG6LjaNMdqg.98A9myvvUiodRbaBWMDqeT/oqCbZ4Ky', NULL, NULL, 3, NULL, '2022-06-08 15:50:20', NULL),
-(4, 'Cesar3', NULL, 'cesar3@celke.com.br', 'cesar3@celke.com.br', '$2y$10$WltGJXjIsXy2TlvtWImreeZ7OcQDHVDXVBgaV/jhedIpf.iwRebeu', NULL, NULL, 3, NULL, '2022-06-09 08:17:44', NULL),
-(5, 'Cesar4', NULL, 'cesar4@celke.com.br', 'cesar4@celke.com.br', '$2y$10$nz8/tN35.9VyTt3CTAt.Oekz8BThoM7qctPyYo6LKVxD35ZemipGO', NULL, NULL, 3, NULL, '2022-06-09 08:22:00', NULL),
-(7, 'Cesar5', NULL, 'cesar5@celke.com.br', 'cesar5@celke.com.br', '$2y$10$5TXBClDpXhg04fJdQYn9SOYfDRsW.lgcrXczN2jdsLKfTfWJtQv.W', NULL, NULL, 3, NULL, '2022-06-09 08:27:47', NULL),
+(3, 'Cesar2', NULL, 'cesar2@celke.com.br', 'cesar2@celke.com.br', '$2y$10$XMEh02l23wsG6LjaNMdqg.98A9myvvUiodRbaBWMDqeT/oqCbZ4Ky', NULL, NULL, 1, NULL, '2022-06-08 15:50:20', '2022-06-15 16:43:54'),
+(4, 'Cesar3', NULL, 'cesar3@celke.com.br', 'cesar3@celke.com.br', '$2y$10$WltGJXjIsXy2TlvtWImreeZ7OcQDHVDXVBgaV/jhedIpf.iwRebeu', NULL, NULL, 1, NULL, '2022-06-09 08:17:44', '2022-06-15 16:42:49'),
+(5, 'Cesar4', NULL, 'cesar4@celke.com.br', 'cesar4@celke.com.br', '$2y$10$nz8/tN35.9VyTt3CTAt.Oekz8BThoM7qctPyYo6LKVxD35ZemipGO', NULL, NULL, 1, NULL, '2022-06-09 08:22:00', '2022-06-15 16:32:43'),
+(7, 'Cesar5', NULL, 'cesar5@celke.com.br', 'cesar5@celke.com.br', '$2y$10$5TXBClDpXhg04fJdQYn9SOYfDRsW.lgcrXczN2jdsLKfTfWJtQv.W', NULL, NULL, 1, NULL, '2022-06-09 08:27:47', '2022-06-15 16:30:58'),
 (8, 'Cesar6', NULL, 'cesar6@celke.com.br', 'cesar6@celke.com.br', '$2y$10$yT1xVyyt5yzymVF.z.3j/uMo7D356XTcjdbiUKJ.zPlCpwvKz1JwG', NULL, NULL, 1, NULL, '2022-06-09 08:53:40', '2022-06-14 11:05:26'),
-(9, 'Cesar7', NULL, 'cesar7@celke.com.br', 'cesar7@celke.com.br', '$2y$10$jSYOJ8UYLOSQKWYtBYScOO5etGSSL670h38iQ7sHXx2uhxMOa.kQm', NULL, '$2y$10$x8mvG8NSE7j2WbM46WiMzOXzrFrzieOFrgSsgwUCueLBX/dieSnpm', 3, NULL, '2022-06-09 11:36:50', '2022-06-15 12:41:10'),
+(9, 'Cesar7', NULL, 'cesar7@celke.com.br', 'cesar7@celke.com.br', '$2y$10$jSYOJ8UYLOSQKWYtBYScOO5etGSSL670h38iQ7sHXx2uhxMOa.kQm', NULL, NULL, 1, NULL, '2022-06-09 11:36:50', '2022-06-15 16:28:46'),
 (10, 'Marcio Vieira', NULL, 'marcio@email.com.br', 'marcio', '$2y$10$NEoEQkhZxeQqzyaLT40gzO9L3sqEAR8nlJY3lf2oxFOPN9PTlBj8e', NULL, NULL, 1, NULL, '2022-06-09 11:56:02', '2022-06-14 10:59:28'),
-(11, 'Cesar9', NULL, 'cesar9@celke.com.br', 'cesar9@celke.com.br', '$2y$10$dkQHLjjZiC/D0FAtP56C8ufXfCYqI.BDK1RYOvV7TUDH5xBd5xdLi', NULL, NULL, 1, NULL, '2022-06-14 11:15:43', '2022-06-14 11:20:07');
+(11, 'Cesar9', NULL, 'cesar9@celke.com.br', 'cesar9@celke.com.br', '$2y$10$dkQHLjjZiC/D0FAtP56C8ufXfCYqI.BDK1RYOvV7TUDH5xBd5xdLi', NULL, NULL, 1, NULL, '2022-06-14 11:15:43', '2022-06-15 17:26:56');
 
 --
--- Índices para tabelas despejadas
+-- Índices de tabelas apagadas
 --
 
 --
--- Índices para tabela `adms_colors`
+-- Índices de tabela `adms_colors`
 --
 ALTER TABLE `adms_colors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `adms_confs_emails`
+-- Índices de tabela `adms_confs_emails`
 --
 ALTER TABLE `adms_confs_emails`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `adms_sits_users`
+-- Índices de tabela `adms_sits_users`
 --
 ALTER TABLE `adms_sits_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `adms_users`
+-- Índices de tabela `adms_users`
 --
 ALTER TABLE `adms_users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `conf_email` (`conf_email`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
