@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 09-Jun-2022 às 12:06
+-- Tempo de geração: 15-Jun-2022 às 12:44
 -- Versão do servidor: 8.0.23
 -- versão do PHP: 7.4.3
 
@@ -134,11 +134,12 @@ INSERT INTO `adms_users` (`id`, `name`, `nickname`, `email`, `username`, `passwo
 (2, 'Cesar 1', NULL, 'cesar1@celke.com.br', 'cesar1@celke.com.br', '$2y$10$ZgJWvB7k5EtYDSOS1SRgmOJishBsva3JTyKuff3pi3KPugVURN.zm', NULL, NULL, 5, NULL, '2022-06-08 15:47:19', NULL),
 (3, 'Cesar2', NULL, 'cesar2@celke.com.br', 'cesar2@celke.com.br', '$2y$10$XMEh02l23wsG6LjaNMdqg.98A9myvvUiodRbaBWMDqeT/oqCbZ4Ky', NULL, NULL, 3, NULL, '2022-06-08 15:50:20', NULL),
 (4, 'Cesar3', NULL, 'cesar3@celke.com.br', 'cesar3@celke.com.br', '$2y$10$WltGJXjIsXy2TlvtWImreeZ7OcQDHVDXVBgaV/jhedIpf.iwRebeu', NULL, NULL, 3, NULL, '2022-06-09 08:17:44', NULL),
-(5, 'Cesar4', NULL, 'cesar4@celke.com.br', 'cesar4@celke.com.br', '$2y$10$nz8/tN35.9VyTt3CTAt.Oekz8BThoM7qctPyYo6LKVxD35ZemipGO', NULL, '$2y$10$NrdUEXlcDE4ztxDaIBecLeG45qdElmvfxQ9w7QwS0j4uqxQbKdtv6', 3, NULL, '2022-06-09 08:22:00', NULL),
-(7, 'Cesar5', NULL, 'cesar5@celke.com.br', 'cesar5@celke.com.br', '$2y$10$5TXBClDpXhg04fJdQYn9SOYfDRsW.lgcrXczN2jdsLKfTfWJtQv.W', NULL, '$2y$10$1f8e1r/EueXsKdaZj8aynOElwcwncYKnm1gRJzoH7gXRtIgc71sXu', 3, NULL, '2022-06-09 08:27:47', NULL),
-(8, 'Cesar6', NULL, 'cesar6@celke.com.br', 'cesar6@celke.com.br', '$2y$10$yT1xVyyt5yzymVF.z.3j/uMo7D356XTcjdbiUKJ.zPlCpwvKz1JwG', NULL, '$2y$10$Z0DhEKhYgpWeFyfm1VyWGuZipbMp9JOU6D8KiGpxHXlNTsKgmGjMu', 3, NULL, '2022-06-09 08:53:40', NULL),
-(9, 'Cesar7', NULL, 'cesar7@celke.com.br', 'cesar7@celke.com.br', '$2y$10$jSYOJ8UYLOSQKWYtBYScOO5etGSSL670h38iQ7sHXx2uhxMOa.kQm', NULL, '$2y$10$.r6wdKObujx0OaS89VStfuuKXOvRH2bK6zmQ8NlNRd6tGAMa/Dvmi', 3, NULL, '2022-06-09 11:36:50', NULL),
-(10, 'Marcio Vieira', NULL, 'marcio@email.com.br', 'marcio', '$2y$10$NEoEQkhZxeQqzyaLT40gzO9L3sqEAR8nlJY3lf2oxFOPN9PTlBj8e', NULL, '$2y$10$TntRyCbizUIk.pZRtJ0zHuvbIRMhR352zEiU7SRG1B5SQHlnsvXpu', 2, NULL, '2022-06-09 11:56:02', NULL);
+(5, 'Cesar4', NULL, 'cesar4@celke.com.br', 'cesar4@celke.com.br', '$2y$10$nz8/tN35.9VyTt3CTAt.Oekz8BThoM7qctPyYo6LKVxD35ZemipGO', NULL, NULL, 3, NULL, '2022-06-09 08:22:00', NULL),
+(7, 'Cesar5', NULL, 'cesar5@celke.com.br', 'cesar5@celke.com.br', '$2y$10$5TXBClDpXhg04fJdQYn9SOYfDRsW.lgcrXczN2jdsLKfTfWJtQv.W', NULL, NULL, 3, NULL, '2022-06-09 08:27:47', NULL),
+(8, 'Cesar6', NULL, 'cesar6@celke.com.br', 'cesar6@celke.com.br', '$2y$10$yT1xVyyt5yzymVF.z.3j/uMo7D356XTcjdbiUKJ.zPlCpwvKz1JwG', NULL, NULL, 1, NULL, '2022-06-09 08:53:40', '2022-06-14 11:05:26'),
+(9, 'Cesar7', NULL, 'cesar7@celke.com.br', 'cesar7@celke.com.br', '$2y$10$jSYOJ8UYLOSQKWYtBYScOO5etGSSL670h38iQ7sHXx2uhxMOa.kQm', NULL, '$2y$10$x8mvG8NSE7j2WbM46WiMzOXzrFrzieOFrgSsgwUCueLBX/dieSnpm', 3, NULL, '2022-06-09 11:36:50', '2022-06-15 12:41:10'),
+(10, 'Marcio Vieira', NULL, 'marcio@email.com.br', 'marcio', '$2y$10$NEoEQkhZxeQqzyaLT40gzO9L3sqEAR8nlJY3lf2oxFOPN9PTlBj8e', NULL, NULL, 1, NULL, '2022-06-09 11:56:02', '2022-06-14 10:59:28'),
+(11, 'Cesar9', NULL, 'cesar9@celke.com.br', 'cesar9@celke.com.br', '$2y$10$dkQHLjjZiC/D0FAtP56C8ufXfCYqI.BDK1RYOvV7TUDH5xBd5xdLi', NULL, NULL, 1, NULL, '2022-06-14 11:15:43', '2022-06-14 11:20:07');
 
 --
 -- Índices para tabelas despejadas
@@ -195,7 +196,7 @@ ALTER TABLE `adms_sits_users`
 -- AUTO_INCREMENT de tabela `adms_users`
 --
 ALTER TABLE `adms_users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

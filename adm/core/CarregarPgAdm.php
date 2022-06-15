@@ -44,7 +44,7 @@ class CarregarPgAdm {
     }
     
     private function pgPublica() {
-        $this->pgPublica = ["Login", "Sair", "NewUser", "ConfEmail"];
+        $this->pgPublica = ["Login", "Sair", "NewUser", "ConfEmail", "NewConfEmail"];
         
         if (in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\\adms\\Controllers\\". $this->urlController;
