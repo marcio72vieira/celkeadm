@@ -7,7 +7,7 @@
     //echo password_hash(123456, PASSWORD_DEFAULT);
 ?>
 
-<h1>Acesso Restrito</h1>
+<h1>Atualizar a Senha!</h1>
 
 
 <?php
@@ -30,20 +30,16 @@
 <span class="msg"></span>
 
 <form id="send_login" method="POST" action="">
-    <label>Usuário</label>
-    <input name="username" type="text" id="username" placeholder="Digite o usuário ou email" value="<?php if(isset($valorForm['username'])){ echo $valorForm['username']; } ?>" ><br><br>
     <label>Senha</label>
-    <input name="password" type="password" id="password" placeholder="Digite a senha" ><br><br>
-    <input name="sendLogin" type="submit" value="Acessar">
+    <input name="password" type="password" id="password" placeholder="Digite a senha" onkeyup="passwordStrength()" ><br><br>
+    <span id="msgViewStrength"></span><br><br>
+    <input name="upPassword" type="submit" value="Salvar">
 </form>
 
 <!--Link aprontando para o controller e método, através da concatenação com a constante URLADM. É necessário acrescentar
     no array de paǵinas públicas, localizado no método: pgPublica(), localizado na classe: core\CarregarPgAdmin-->
 <br>
 <p>
-    <a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a> <br>
-    <a href="<?php echo URLADM; ?>recover-password/index">Esqueceu a senha?</a> <br>
+    <a href="<?php echo URLADM; ?>login/index">Acessar</a> <br>
 </p>
 
-Usuário: cesar@celke.com.br<br>
-Senha: 123456a
