@@ -29,7 +29,7 @@
 <!-- Div para exibir mensagens de error -->
 <span class="msg"></span>
 
-<form id="send_login" method="POST" action="">
+<form id="update_password" method="POST" action="">
     <label>Senha</label>
     <input name="password" type="password" id="password" placeholder="Digite a senha" onkeyup="passwordStrength()" ><br><br>
     <span id="msgViewStrength"></span><br><br>

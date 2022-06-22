@@ -57,6 +57,21 @@ $(document).ready(function () {
 });
 
 
+//Quando carregar o documento, execute uma função para validar Login do Usuário
+$(document).ready(function () {
+    //Quando houver uma interação (on) do tipo "submit" no formulário, execute uma função.
+    $("#update_password").on("submit", function() {
+        var password = $("#password").val();
+        if(password === "") {
+            $(".msg").html("<p style='color: #ff0000'>Erro: É necessário preencher o campo senha</p>");
+            return false;
+        }
+    });
+});
+
+
+
+
 //FUNÇÕES ENVOLVENDO O JAVASCRIPT PURO
 function passwordStrength() {
     
