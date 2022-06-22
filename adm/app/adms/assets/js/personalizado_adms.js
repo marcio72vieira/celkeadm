@@ -57,13 +57,19 @@ $(document).ready(function () {
 });
 
 
-//Quando carregar o documento, execute uma função para validar Login do Usuário
+//Validando o formulário recuperação de senha
 $(document).ready(function () {
     //Quando houver uma interação (on) do tipo "submit" no formulário, execute uma função.
     $("#update_password").on("submit", function() {
         var password = $("#password").val();
         if(password === "") {
             $(".msg").html("<p style='color: #ff0000'>Erro: É necessário preencher o campo senha</p>");
+            return false;
+        } else if(password.length < 6 || password.match(/([1-9]+)\1{1,}/)) {
+            $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, não deve ter número repedito</p>");
+            return false;
+        } else if(password.length < 6 || !password.match(/([A-Za-z])/)) {
+            $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, deve ter número pelo menos uma letra</p>");
             return false;
         }
     });
