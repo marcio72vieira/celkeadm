@@ -24,7 +24,7 @@ class AdmsValCampoVazio {
         
         //Verifica se no array de dados, possui algum campo vazio
         if (in_array('', $this->dados)) {
-            $_SESSION['msg'] = "Erro: Todos os campos precisam está preenchidos A!";
+            $_SESSION['msg'] = "Erro: Necessário preencher todos os campos!";
             $this->resultado = false;
         } else {
             $this->resultado = true;

@@ -464,5 +464,21 @@ OBS -   Sempre que se desejar fazer alguma verificação com alguma informação
         uma model existente (que atenda essa veruficação) ou deve-se criar.
         
           
-    
-
+===============================
+RECUPERANDO A SENHA
+===============================
+1 - Formulário de "login", link "esqueceu a senha?" (.../app/adms/Views/login/access.php) invoca o controller:
+    "RecoverPassword". Obs: Um link "sempre" irá invocar um controller.
+2 - Controller "RecoverPassword" método "index()" (.../app/adms/Controllers/RecoverPassword.php);
+    - Será instanciado o método "viewRecoverPass()", visto que nenhuma informação é passada pela URL do link;
+    - O método "viewRecoverPass()" através do objeto "$carregarView" irá renderizar a view "recoverPassword"
+      localizada em (adms/Views/login/recoverPassword") sem passar nenhum "dados";
+3 - A view "recoverPassword"(adms/Views/login/recoverPassword"), possui um formulário, que quando submetido irá
+    executar o próprio script que renderizou esse formulário (recoverPassword), ou seja, o controller "RecoverPassword", 
+    pois foi ele quem instanciou o objeto para renderizar essa view. Quando o controller "RecoverPassword" for executado novamente em função
+    da submissão do formulário contido na view "recoverPassword" o método que será executado por padrão, será o 
+    método "index()", isso porque a execução desse método faz parte da lógica definida no controller (ConfigController)
+    que executa todos os controllers da aplicação e lá foi definido que sempre que quando informado só o nome do controller,
+    ele por padrão deverá executar o método index() desse controller.
+    Desta vez, considerando que o usuário preencheu o formulário para recuperar a senha e clicou no botão submit, o método
+    index do controller "RecoverPassword" irá testar positivo e irá instanciar um objeto da classe AdmsRecoverPassord

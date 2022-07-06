@@ -59,15 +59,14 @@ class AdmsSendEmail {
         
        
         $this->dadosInfoEmail['host']       = $this->resultadoBd[0]['host'];
-        $this->dadosInfoEmail['username']   = $this->resultadoBd[0]['username'];
-        $this->dadosInfoEmail['password']   = $this->resultadoBd[0]['password'];
-        $this->dadosInfoEmail['port']       = $this->resultadoBd[0]['port'];
         $this->dadosInfoEmail['fromEmail']  = $this->resultadoBd[0]['email'];
-        $this->dadosInfoEmail['fromName']   = $this->resultadoBd[0]['name'];
-        $this->dadosInfoEmail['smtpsecure']   = $this->resultadoBd[0]['smtpsecure'];
         //Definindo o email para quem o destinatário deverá informar à respeito de um erro no envio do email
         $this->fromEmail = $this->dadosInfoEmail['fromEmail'];
-        
+        $this->dadosInfoEmail['fromName']   = $this->resultadoBd[0]['name'];
+        $this->dadosInfoEmail['username']   = $this->resultadoBd[0]['username'];
+        $this->dadosInfoEmail['password']   = $this->resultadoBd[0]['password'];
+        $this->dadosInfoEmail['smtpsecure'] = $this->resultadoBd[0]['smtpsecure'];
+        $this->dadosInfoEmail['port']       = $this->resultadoBd[0]['port'];
     }
 
     private function sendEmailPhpMailer() {
@@ -76,7 +75,7 @@ class AdmsSendEmail {
 
         try {
             //Configurações do servidor
-            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                //Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                //Enable verbose debug output
             $mail->CharSet = 'UTF-8';                               //Set character map Português (áçéã etc...)
             $mail->isSMTP();                                        //Send using SMTP
             $mail->Host = $this->dadosInfoEmail['host'];            //Set the SMTP server to send through
@@ -84,7 +83,7 @@ class AdmsSendEmail {
             $mail->Username = $this->dadosInfoEmail['username'];    //SMTP username
             $mail->Password = $this->dadosInfoEmail['password'];    //SMTP password
             $mail->SMTPSecure = $this->dadosInfoEmail['smtpsecure'];     //Enable implicit TLS encryption
-            $this->dadosInfoEmail['port'];                          //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS` 
+            $mail->Port = $this->dadosInfoEmail['port'];                          //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS` 
             
             //Email e nome de quem está enviando
             $mail->setFrom($this->dadosInfoEmail['fromEmail'], $this->dadosInfoEmail['fromName']);

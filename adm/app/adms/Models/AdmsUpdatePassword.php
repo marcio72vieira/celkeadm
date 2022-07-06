@@ -70,7 +70,7 @@ class AdmsUpdatePassword {
                 $this->updatePassword();
             } else {
                 $_SESSION['msg'] = "Erro: Link inválido, solicite novo link <a href='". URLADM ."recover-password/index'>Clique aqui</a>!<br><br>";
-                return $this->resultado = false; 
+                $this->resultado = false; 
             }
             
             
@@ -92,7 +92,7 @@ class AdmsUpdatePassword {
             $_SESSION['msg'] = "Senha atualizada com sucesso!";
             $this->resultado = true;
         } else {
-            $_SESSION['msg'] = "Senha não atualizada com sucesso. Tente novamente";
+            $_SESSION['msg'] = "Erro: Senha não atualizada. Tente novamente";
             $this->resultado = false;
         }
         

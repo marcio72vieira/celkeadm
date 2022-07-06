@@ -18,12 +18,12 @@ class AdmsRead extends AdmsConn {
         return $this->result;
     }
 
-    public function exeRead($tabela, $termos = null, $paseString = null) {
+    public function exeRead($tabela, $termos = null, $parseString = null) {
 
-        if (!empty($paseString)) {
+        if (!empty($parseString)) {
             //Obs: não deve haver espaços em branco dentro do parâmetro da parsestring vindo como parâmetro
             //Converte o valor de $parseString em um array e atribui à propriedade $this->values (que é um array).
-            parse_str($paseString, $this->values);
+            parse_str($parseString, $this->values);
         }
         
         $this->select = "SELECT * FROM {$tabela} {$termos}";
@@ -40,10 +40,8 @@ class AdmsRead extends AdmsConn {
             //Obs: não deve haver espaços em branco dentro do parâmetro da parsestring vindo como parâmetro
             //Converte o valor de $parseString em um array e atribui à propriedade $this->values (que é um array).
             parse_str($paseString, $this->values);
-            
-            $this->exeInstruction();
-        }
-        
+        }   
+        $this->exeInstruction();
     }
     
     private function exeInstruction() {
