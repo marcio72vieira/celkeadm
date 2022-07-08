@@ -38,8 +38,8 @@ class NewConfEmail {
     
     private function viewNewConfEmail() {
         //Chamando o nome da View e passando os dados, caso haja
-        $carregarView = new \Core\ConfigView("adms/Views/login/newConfEmail", $this->dados);
-        $carregarView->renderizar();
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/newConfEmail", $this->dados);
+        $carregarView->renderizarLogin();
         
     }
 }

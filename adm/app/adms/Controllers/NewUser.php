@@ -38,7 +38,7 @@ class NewUser {
         //Instanciando o objeto view, através da classe ConfigView. Obs: o objeto ConfigView.php está no "diretório"
         //core, mas a view que ele recebe como parâmetro, está no "diretório" app/adms/View/login/newUser. O "app" inicial
         //é colocado, através de uma concatenação, lá no método renderizar() da classe Core\ConfigView.php
-        $carregarView = new \Core\ConfigView("adms/Views/login/newUser", $this->dados);
-        $carregarView->renderizar();
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/newUser", $this->dados);
+        $carregarView->renderizarLogin();
     }
 }

@@ -38,8 +38,8 @@ class RecoverPassword {
     
     private function viewRecoverPass() {
         //Chamando o nome da View e passando os dados, caso haja
-        $carregarView = new \Core\ConfigView("adms/Views/login/recoverPassword", $this->dados);
-        $carregarView->renderizar();
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/recoverPassword", $this->dados);
+        $carregarView->renderizarLogin();
         
     }
 }

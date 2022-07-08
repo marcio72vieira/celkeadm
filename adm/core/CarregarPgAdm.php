@@ -54,7 +54,7 @@ class CarregarPgAdm {
     }
     
     private function pgRestrita() {
-        $this->pgRestrita = ["Dashboard"];
+        $this->pgRestrita = ["Dashboard", "ListUsers"];
         
         if (in_array($this->urlController, $this->pgRestrita)) {
             

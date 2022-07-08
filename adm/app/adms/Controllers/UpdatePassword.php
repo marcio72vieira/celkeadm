@@ -5,7 +5,6 @@ namespace App\adms\Controllers;
 class UpdatePassword {
     
     private $chave;
-    private $dados;
     private $dadosForm;
     
     public function index() {
@@ -64,7 +63,7 @@ class UpdatePassword {
     }
     
     private function viewUpdatePassword() {
-        $carregarView = new \Core\ConfigView("adms/Views/login/updatePassword");
-        $carregarView->renderizar();
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/updatePassword");
+        $carregarView->renderizarLogin();
     }
 }

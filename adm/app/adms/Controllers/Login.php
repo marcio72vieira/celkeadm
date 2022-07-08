@@ -28,8 +28,8 @@ class Login {
         //$this->dados = [];
         
         //Chamando o nome da View e passando os dados, caso haja
-        $carregarView = new \Core\ConfigView("adms/Views/login/access", $this->dados);
-        $carregarView->renderizar();
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/access", $this->dados);
+        $carregarView->renderizarLogin();
         
     }
 }

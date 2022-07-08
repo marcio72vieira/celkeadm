@@ -2,7 +2,7 @@
 ADICIONANDO UM PROJETO EXISTENTE PARA O GITHUB USANDO LINHA DE COMANDO
 https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 =============================================================================================
-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
+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
 
 
 1 - Crie um novo projeto no GitHub. Para evitar erros, nao inicialize o novo repositório com os arquivos README, licenças ou gitignore. Você pode adicionar estes arquivos depois que seu proejto tenha sido "pushed" para a o GitHub.
@@ -460,6 +460,17 @@ ENVIANDO EMAIL COM PHPMAILER
 
 
 // Insignith: 
+OBS -   Meu diretório base ($baseDir) é: /adm, pois nele é onde possuo meu arquivo index.php, onde tudo começa.
+        Dentro deste diretório "/adm", eu poderia ter um diretório /public onde nele eu poderia colocar o arquivo
+        index.php bem como outras pastas de domínio publico css; js; img. A pasta app, dentro de adm é só uma
+        pasta para a organização do sistema atual, tanto que dentro de adm/app/ eu possuo a pasta /adms que se refere
+        á parte administrativa do site. Debaixo de app poderia colocar uma pasta /visitors  para as páginas
+        de domínio público ou seja ficariam nessa disposição. 
+        Nível administrativo: adm/app/adms e as demais pasta referente á parte administrativa
+        Nivel visitantes: adm/app/visitors e as demais pastas pertencentes à parte para visitantes
+        A pasta /core que está no mesmo nível da pasta /app é para colocar todos os arquivos de configuração global
+        do site como um todo, ou seja tanto para app/adms/ como app/visitors se existisse
+
 OBS -   Sempre que se desejar fazer alguma verificação com alguma informação do banco, deve-se instanciar
         uma model existente (que atenda essa veruficação) ou deve-se criar.
         
