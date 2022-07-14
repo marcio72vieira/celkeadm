@@ -101,6 +101,14 @@ Baixando projetos do GIT
 	ALTER ROLE
 	postgres@marcio72:/home/marcio$ 
 
+*************************
+NETBEANS TECLAS DE ATALHO
+*************************
+CTRL + N (nova pasta, novo arquivo, etc...)
+ALT + SHIFT + F (auto formatação)
+ALT + INS (inserir gets e sets)
+
+
 
 
 *********************

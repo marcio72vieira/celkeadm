@@ -37,7 +37,8 @@ class CarregarPgAdm {
         // Se a classe existir e o método não, o programa é abortado, caso contrário, o método é invocado. Observe que como
         // a classe, é necessário acrescentar (), pois também só temos o nome do método
         if (method_exists($classeCarregar, $this->urlMetodo)) {
-            $classeCarregar->{$this->urlMetodo}();
+            // $classeCarregar->{$this->urlMetodo}(); Antes de visulizar detalhes do usuáiro, não utilizava parâmetro
+            $classeCarregar->{$this->urlMetodo}($this->urlParametro);
         } else {
             die('Erro (Método): Por favor tente novamente. Caso o erro persista entre em contato com o administrador: ' . EMAILADM . '<br>');
         }
@@ -54,7 +55,7 @@ class CarregarPgAdm {
     }
     
     private function pgRestrita() {
-        $this->pgRestrita = ["Dashboard", "ListUsers"];
+        $this->pgRestrita = ["Dashboard", "ListUsers", "ViewUsers"];
         
         if (in_array($this->urlController, $this->pgRestrita)) {
             
