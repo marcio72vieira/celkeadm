@@ -7,6 +7,8 @@ namespace App\adms\Models\helper;
 class AdmsValUserSingle {
     
     private string $userName;
+    private $edit;
+    private $id;
     private bool $resultado;
     private $resultadoBd;
     
@@ -15,16 +17,22 @@ class AdmsValUserSingle {
     }
 
    
-    public function validarUserSingle($username) {
+    public function validarUserSingle($username, $edit = null, $id = null) {
         
         $this->userName = $username;
+        $this->edit = $edit;
+        $this->id = $id;
         
         //Instancia a classe genérica
-        $valUserSingleLogin = new \App\adms\Models\helper\AdmsRead();
+        $valUserSingle = new \App\adms\Models\helper\AdmsRead();
         
-        $valUserSingleLogin->fullRead("SELECT id FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1");
+        if(($this->edit == true) AND (!empty($this->id))) {
+            $valUserSingle->fullRead("SELECT id FROM adms_users WHERE (username =:username OR email =:email) AND id<>:id LIMIT :limit", "username={$this->userName}&email={$this->userName}&id={$this->id}&limit=1");
+        } else {
+           $valUserSingle->fullRead("SELECT id FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1"); 
+        }
         
-        $this->resultadoBd =  $valUserSingleLogin->getResult();
+        $this->resultadoBd =  $valUserSingle->getResult();
         
         
         //Se não encontrou nenhum usuário no banco de dados com o email fornecido, significa que PODE cadastrar, caso contrário NÃO PODE cadastrar, ou seja,

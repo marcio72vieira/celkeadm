@@ -34,7 +34,11 @@ class AdmsValEmailSingle {
         //usuário pelo seu id. //Se estou querendo cadastrar, veriico se o email existe no banco de dados inteiro para ver se o email já está cadastrado
         //Se $edit for igual a verdadeiro e o $id não estiver vazio, significa que estou querendo editar, caso contrário estou querendo cadastrar
         if(($this->edit == true) AND (!empty($this->id))) {
-            $valEmailSingle->fullRead("SELECT id FROM adms_users WHERE email =:email AND id <>:id LIMIT :limit", "email={$this->email}&id={$this->id}&limit=1");
+            //Quando utilizado para cadastro a instrução abaixo testa apenas o email para ver se já não existe
+            //$valEmailSingle->fullRead("SELECT id FROM adms_users WHERE email =:email AND id <>:id LIMIT :limit", "email={$this->email}&id={$this->id}&limit=1");
+            //Quando utilizado para edição foi necessário acrescentar mais uma condiçãona cláusula WHERE
+            $valEmailSingle->fullRead("SELECT id FROM adms_users WHERE (email =:email OR username =:username) AND id <>:id LIMIT :limit", "email={$this->email}&username={$this->email}&id={$this->id}&limit=1");
+            
         } else {
             $valEmailSingle->fullRead("SELECT id FROM adms_users WHERE email =:email LIMIT :limit", "email={$this->email}&limit=1");
         }
