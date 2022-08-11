@@ -66,7 +66,7 @@ $(document).ready(function () {
             $(".msg").html("<p style='color: #ff0000'>Erro: É necessário preencher o campo senha</p>");
             return false;
         } else if(password.length < 6 || password.match(/([1-9]+)\1{1,}/)) {
-            $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, não deve ter número repedito</p>");
+            $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, não deve ter número repetido</p>");
             return false;
         } else if(password.length < 6 || !password.match(/([A-Za-z])/)) {
             $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, deve ter número pelo menos uma letra</p>");
@@ -74,6 +74,26 @@ $(document).ready(function () {
         }
     });
 });
+
+
+//Validando o formulário alteração de senha
+$(document).ready(function () {
+    //Quando houver uma interação (on) do tipo "submit" no formulário, execute uma função.
+    $("#edit_user_password").on("submit", function() {
+        var password = $("#password").val();
+        if(password === "") {
+            $(".msg").html("<p style='color: #ff0000'>Erro: É necessário preencher o campo senha</p>");
+            return false;
+        } else if(password.length < 6 || password.match(/([1-9]+)\1{1,}/)) {
+            $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, deve ter no mínimo 6 caracteres e não deve ter número repetido</p>");
+            return false;
+        } else if(password.length < 6 || !password.match(/([A-Za-z])/)) {
+            $(".msg").html("<p style='color: #ff0000'>Erro: senha muito franca, deve ter número pelo menos uma letra</p>");
+            return false;
+        }
+    });
+});
+
 
 
 $(document).ready(function () {
@@ -106,6 +126,7 @@ $(document).ready(function () {
     });
 });
 
+//Validar campos do formulário de Edição de Usuários
 $(document).ready(function () {
     //Quando houver uma interação (on) do tipo "submit" no formulário, execute uma função. A função captura o objeto "event"
     $("#edit_user").on("submit", function(event) {

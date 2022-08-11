@@ -7,13 +7,12 @@ namespace App\adms\Models;
  *
  * @author marcio
  */
-class AdmsEditUsers {
+class AdmsEditUsersPassword {
 
     private $resultadoBd;
     private bool $resultado;
     private int $id;
     private array $dados;
-    private array $dadosExitVal;    //Array de campos para retirar da validaçã quando necessário
     
 
     public function getResultado(): bool {
@@ -30,7 +29,7 @@ class AdmsEditUsers {
         //echo "ID na models {$this->id}<br>";
         //Buscando no banco de dados as informações referente ao usuário passado no ID
         $viewUser = new \App\adms\Models\helper\AdmsRead();
-        $viewUser->fullRead("SELECT id, name, nickname, email, username FROM adms_users WHERE id =:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUser->fullRead("SELECT id FROM adms_users WHERE id =:id LIMIT :limit", "id={$this->id}&limit=1");
 
         //O resultado retornado pela métdo getResult (ou seja, o resultado do banco de dados), de AdmsRead() é atribuido á propriedade getResultadoBd desta classe
         $this->resultadoBd = $viewUser->getResult();
@@ -48,16 +47,8 @@ class AdmsEditUsers {
     //O nome deste método poderia ser updateUser, ou updateRecord etc...
     public function update(array $dados) {
         $this->dados =  $dados;
-        //echo "<pre>"; var_dump($this->dados); echo "</pre>";
-        
-        //Definindo campos(s) nao obrigatórios, na edição do usuário
-        $this->dadosExitVal['nickname'] = $this->dados['nickname'];
-        unset($this->dados['nickname']);
-        
-        //$this->dadosExitVal['username'] = $this->dados['username']; //Adicionando outros campos para não obrigar a validação
-        //unset($this->dados['nickname'], $this->dados['username']);  //Adicionando outros campos para não obrigar a validação
-        
-        //Verifica se algum campo está vazio
+       
+        //Verifica se o campo senha está preenchido
         $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
         $valCampoVazio->validarDados($this->dados);
         if($valCampoVazio->getResultado()) {
@@ -69,21 +60,11 @@ class AdmsEditUsers {
     
     private function valInput () {
         //Faz a verificação se o email é valido
-        $valEmail = new \App\adms\Models\helper\AdmsValEmail();
-        $valEmail->validarEmail($this->dados['email']);
+        $valPassword = new \App\adms\Models\helper\AdmsValPassword;
+        $valPassword->validarPassword($this->dados['password']);
         
-        //Faz a verificação se o email é único no campo email e username do banco de dados
-        $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
-        $valEmailSingle->validarEmailSingle($this->dados['email'], true, $this->dados['id']);
-        
-        //Faz a verificação se o usuário é único
-        $valUserSingle =  new \App\adms\Models\helper\AdmsValUserSingle();
-        $valUserSingle->validarUserSingle($this->dados['username'], true, $this->dados['id']);
-        
-        //Verifica se as validações passaram no teste, verifidando o valor de getResultado
-        if($valEmail->getResultado() AND $valEmailSingle->getResultado() AND $valUserSingle->getResultado()) {
-            //$_SESSION['msg'] = "Editar Usuário!<br>";
-            //$this->resultado = false;
+        //Verifica se a validaçãopassou no teste, verifidando o valor de getResultado
+        if($valPassword->getResultado()) {
             $this->edit();
         } else {
             $this->resultado = false;
@@ -91,7 +72,7 @@ class AdmsEditUsers {
     } 
     
     private function edit() {
-        $this->dados['nickname'] = $this->dadosExitVal['nickname'];
+        $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
         //$this->dados['username'] = $this->dadosExitVal['username']; //Adicionando outros campos para não obrigar a validação
         $this->dados['modified'] = date("Y-m-d H:i:s");
         //var_dump($this->dados);
@@ -100,10 +81,10 @@ class AdmsEditUsers {
         $upUser->exeUpdate("adms_users", $this->dados, "WHERE id =:id", "id={$this->dados['id']}");
         
         if($upUser->getResult()) {
-            $_SESSION['msg'] = "Usuário editado com sucesso!<br>";
+            $_SESSION['msg'] = "Senha do usuário editado com sucesso!<br>";
             $this->resultado = true;
         } else {
-            $_SESSION['msg'] = "Erro: Usuário não editado com sucesso!<br>";
+            $_SESSION['msg'] = "Erro: Senha do usuário não editado com sucesso!<br>";
             $this->resultado = false;
         }
     }

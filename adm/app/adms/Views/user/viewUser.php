@@ -19,5 +19,6 @@ if(!empty($this->dados['viewUser'])) {
     echo "ID: ". $id ."<br>";
     echo "Nome: ". $name ."<br>";
     echo "E-mail: ". $email ."<br>";
+    echo "<a href='". URLADM ."edit-users-password/index/$id'>Editar Senha</a>";
     
 }
