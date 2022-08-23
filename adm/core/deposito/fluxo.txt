@@ -501,3 +501,15 @@ RECUPERANDO A SENHA
     ele por padrão deverá executar o método index() desse controller.
     Desta vez, considerando que o usuário preencheu o formulário para recuperar a senha e clicou no botão submit, o método
     index do controller "RecoverPassword" irá testar positivo e irá instanciar um objeto da classe AdmsRecoverPassord
+
+
+
+=========================================================
+EDITANDO A IMAGEM PASSOS A SEREM EXECUTADOS PASSOS MACROS
+=========================================================
+1 - Criar controller com base na controller app/adms/Controller/EditUsers
+2 - Fazer as alteraçõs de nome necessárias app/adms/Controller/EditUsersImage
+3 - Acrescentar a rota do novo controller ao método pgRestrita na classe adm/core/CarregarPgAdm
+4 - Criar link na página (view) adm/app/adms/Views/user/viewUser.php
+5 - Criar a model \App\adms\Models\AdmsEditUsersImage com base na model AdmsEditUsers e fazer as alterações necessárias
+6 - Criar a view app/adms/Views/user/editUserImage.php e fazer as alterações necessárias
